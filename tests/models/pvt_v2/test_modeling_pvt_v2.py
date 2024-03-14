@@ -39,7 +39,6 @@ if is_torch_available():
     import torch
 
     from transformers import MODEL_MAPPING, AutoImageProcessor, PvtV2ForImageClassification, PvtV2Model
-    from transformers.models.pvt_v2.modeling_pvt_v2 import PVT_V2_PRETRAINED_MODEL_ARCHIVE_LIST
 
 
 if is_vision_available():
@@ -312,9 +311,9 @@ class PvtV2ModelTest(ModelTesterMixin, PipelineTesterMixin, unittest.TestCase):
 
     @slow
     def test_model_from_pretrained(self):
-        for model_name in PVT_V2_PRETRAINED_MODEL_ARCHIVE_LIST[:1]:
-            model = PvtV2Model.from_pretrained(model_name)
-            self.assertIsNotNone(model)
+        model_name = "OpenGVLab/pvt_v2_b0"
+        model = PvtV2Model.from_pretrained(model_name)
+        self.assertIsNotNone(model)
 
 
 @require_torch
